@@ -1,0 +1,60 @@
+<app-loader *ngIf="loader"></app-loader>
+
+<h1 style="text-align: center">{{countrySelected}}</h1>
+
+<div class="row" style="font-weight: bold;">
+    <div style="color:red" class="column">
+        Confirmed
+        <h3>{{totalConfirmed|number}}</h3>
+    </div>
+    <div style="color:rgb(30, 110, 14)" class="column">
+        Recoverred
+        <h3>{{totalRecovered|number}}</h3>
+    </div>
+    <div class="column" style="color:gray">
+        Death
+        <h3>{{totalDeath|number}}</h3>
+    </div>
+    <div class="column" style="color:blue">
+        Active Cases
+        <h3>{{totalAll|number}}</h3>
+    </div>
+  </div>
+
+  <div class="sel">
+  <div class="select">
+    <select name="slct" id="slct" (change)="selectedCountry($event.target.value)">
+      <option selected value="all">All Countries</option>
+      <option *ngFor="let country of countryData" value="{{country.code}}">{{country.name}}</option>
+    </select>
+</div></div>
+
+<div class="container" *ngIf="selected">
+  <form>
+    <div class="myradio">
+        <input type="radio" name="myRadio" id="one" class="myradio__input" checked>
+        <label for="one" class="myradio__label">Confirmed</label>
+    </div>
+    <div class="myradio">
+        <input type="radio" name="myRadio" id="two" class="myradio__input">
+        <label for="two" class="myradio__label">Recovered</label>
+    </div>
+    <div class="myradio">
+        <input type="radio" name="myRadio" id="three" class="myradio__input">
+        <label for="three" class="myradio__label">Death</label>
+    </div>
+    <div class="myradio">
+        <input type="radio" name="myRadio" id="four" class="myradio__input">
+        <label for="four" class="myradio__label">Active Cases</label>
+    </div>
+  </form>
+</div>
+
+<div id="chart" *ngIf="selected">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [labels]="chartOptions.labels"
+      [responsive]="chartOptions.responsive"
+    ></apx-chart>
+  </div>

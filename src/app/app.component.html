@@ -1,0 +1,12 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <h2>Covid-19 Tracker</h2>&nbsp;&nbsp;
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="home">Home</a>
+    <ng-template ngbNavContent><router-outlet></router-outlet></ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink routerLink="country">Country Wise</a>
+    <ng-template ngbNavContent><router-outlet></router-outlet></ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>
